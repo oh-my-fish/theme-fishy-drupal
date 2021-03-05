@@ -15,13 +15,15 @@ function _drush_alias_name
 end
 
 function fish_prompt
+  set -l code $status
+
   set -l cyan (set_color -o cyan)
   set -l yellow (set_color -o yellow)
   set -l red (set_color -o red)
   set -l blue (set_color -o blue)
   set -l normal (set_color normal)
 
-  set -l arrow "$blue➜ "
+  set -l arrow (test $code = 0; and echo "$blue➜ "; or echo "$red➜ ")
   set -l cwd (set_color $fish_color_cwd)(prompt_pwd)
 
   if [ (_git_branch_name) ]
