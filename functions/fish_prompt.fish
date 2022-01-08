@@ -23,7 +23,7 @@ function fish_prompt
   set -l blue (set_color -o blue)
   set -l normal (set_color normal)
 
-  set -l arrow (test $code = 0; and echo "$blue➜ "; or echo "$red➜ ")
+  test $code = 0; and set -l arrow "$blue➜ "; or set -l arrow "$red➜ "
   set -l cwd (set_color $fish_color_cwd)(prompt_pwd)
 
   if [ (_git_branch_name) ]
